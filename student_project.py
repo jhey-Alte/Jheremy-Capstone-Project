@@ -1,13 +1,20 @@
 """
-Lists
+Data Structures
 Student Project
 Project Title:
 """
 
 import random
+import requests
+import pp
+
+based_url = "https://randomuser.me/api/"
+response = requests.get(based_url)
+body = response.json()
+
 
 #This list is for using a random name for the users email#
-security = ["user", "oval", "deer", "pop", "code", "vail", "match", "fold"]
+#security = ["user", "oval", "deer", "pop", "code", "vail", "match", "fold"]
 
 #This list is to use a random email address for extra security#
 address = ["@gmail.com", "@yahoo.com", "@outlook.com", "@icloud.com", "@proton.me"]
@@ -20,8 +27,9 @@ creation = input("Create a secure email, would you like to use the security emai
 
 #User is a name for their email at random#
 if creation == "yes":
-    creation = creation.replace(creation, random.choice(security))
-
+    #creation = creation.replace(creation, random.choice(security))
+    body = response.json()
+    creation = body["results"][0]["login"]["username"]
 #User inputs a custom name for their email#
 while creation == "":
     creation = input("Enter a name that can be used for the email...")
